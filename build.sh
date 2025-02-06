@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t leaning_web .
+docker build -t learning_web .
