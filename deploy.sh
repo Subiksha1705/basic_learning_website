@@ -1,7 +1,12 @@
 #!/bin/bash
 echo "hi123"
-sh 'chmod +x build.sh'
-sh './build.sh'
+chmod +x build.sh
+./build.sh
+
+# Ensure build.sh includes a docker build command
+# For example:
+# docker build -t learning_web .
+
 docker login -u subiksha17 -p s1705sha17
 docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
