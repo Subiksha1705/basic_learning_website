@@ -12,7 +12,7 @@ docker push subiksha17/myreact
 minikube stop
 minikube delete
 # Deploy to Kubernetes
-kubectl create deployment myreact-app --image=subiksha17/myreact --port 80
-kubectl expose deployment myreact-app --type=NodePort --port=80
+#kubectl create deployment myreact-app --image=subiksha17/myreact --port 80
+#kubectl expose deployment myreact-app --type=NodePort --port=80
 
 echo "Deployment successful! Access your app via Minikube service."
