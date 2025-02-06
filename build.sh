@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t react_app .
+docker build -t leaning_web .
