@@ -18,8 +18,7 @@ fi
 kubectl config use-context minikube
 
 # Deploy to Kubernetes
-kubectl create deployment myreact-app --image=subiksha17/myreact --dry-run=client -o yaml | kubectl apply -f -
-kubectl scale deployment myreact-app --replicas=1
-kubectl expose deployment myreact-app --type=LoadBalancer --name=myreact-service --port=8081 --target-port=80
+kubectl create deployment myreact-app --image=subiksha17/myreact --port 80
+kubectl expose deployment myreact-app --type=NodePort --port=80
 
 echo "Deployment successful! Access your app via Minikube service."
