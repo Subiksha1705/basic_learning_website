@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "hi123"
 chmod +x build.sh
 ./build.sh
@@ -7,11 +8,23 @@ chmod +x build.sh
 # For example:
 # docker build -t learning_web .
 
+# Docker login
 docker login -u subiksha17 -p s1705sha17
 docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
 
-# Check if port 8080 is in use, and remove conflicting container or process
+# Start Minikube if it's not running
+if ! minikube status | grep -q "Running"; then
+  echo "Starting Minikube..."
+  minikube start
+else
+  echo "Minikube is already running"
+fi
+
+# Set kubectl to use Minikube's context
+kubectl config use-context minikube
+
+# Check if port 8080 or 9090 is in use, and remove conflicting containers
 if lsof -i :8080; then
   echo "Port 8080 is in use, removing the conflicting container..."
   # Check if the container is already running and remove it
@@ -20,9 +33,15 @@ fi
 
 # Alternatively, try using port 9090
 if lsof -i :9090; then
-  echo "Port 9090 is also in use, removing the conflicting container..."
+  echo "Port 9090 is in use, removing the conflicting container..."
   docker ps -q -f name=myreact_container && docker rm -f myreact_container || true
 fi
 
-# Run the Docker container with port 9090 (or any other available port)
-docker run -d -p 9090:80 --name myreact_container subiksha17/myreact
+# Create a Kubernetes Deployment using kubectl
+kubectl run myreact-app --image=subiksha17/myreact --port=80 --replicas=1
+
+# Expose the Kubernetes Deployment on port 9090
+kubectl expose deployment myreact-app --type=LoadBalancer --name=myreact-service --port=80 --target-port=80 --name=myreact-service
+
+# Optionally, you can access the Minikube service:
+minikube service myreact-service --url
