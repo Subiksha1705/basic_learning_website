@@ -13,14 +13,6 @@ docker login -u subiksha17 -p s1705sha17
 docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
 
-# Start Minikube if it's not running
-if ! minikube status | grep -q "Running"; then
-  echo "Starting Minikube..."
-  minikube start
-else
-  echo "Minikube is already running"
-fi
-
 # Set kubectl to use Minikube's context
 kubectl config use-context minikube
 
