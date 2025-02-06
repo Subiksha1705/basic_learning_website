@@ -35,6 +35,3 @@ kubectl run myreact-app --image=subiksha17/myreact --port=80 --replicas=1
 
 # Expose the service
 kubectl expose deployment myreact-app --type=LoadBalancer --name=myreact-service --port=80 --target-port=80
-
-# Optionally, access the service through Minikube:
-minikube service myreact-service --url
