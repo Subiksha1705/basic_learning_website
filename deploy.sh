@@ -12,4 +12,4 @@ docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
 
 # Run the Docker container
-docker run -d -p 80:80 --name myreact_container subiksha17/myreact
+docker run -d -p 8080:80 --name myreact_container subiksha17/myreact
