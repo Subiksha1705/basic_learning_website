@@ -9,6 +9,8 @@ echo "s1705sha17" | docker login -u subiksha17 --password-stdin
 docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
 
+minikube stop
+minikube delete
 # Deploy to Kubernetes
 kubectl create deployment myreact-app --image=subiksha17/myreact --port 80
 kubectl expose deployment myreact-app --type=NodePort --port=80
