@@ -11,5 +11,8 @@ docker login -u subiksha17 -p s1705sha17
 docker tag learning_web subiksha17/myreact
 docker push subiksha17/myreact
 
+# Remove any existing container with the same name
+docker rm -f myreact_container || true
+
 # Run the Docker container
-docker run -d -p 8080:80 --name myreact_container1 subiksha17/myreact
+docker run -d -p 8080:80 --name myreact_container subiksha17/myreact
